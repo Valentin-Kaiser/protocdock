@@ -30,7 +30,7 @@ jobs:
 
     steps:
     - name: Use custom proto compiler and committer action
-      uses: valentin-kaiser/docker-proto-compiler@main
+      uses: valentin-kaiser/protocdock@master
       with:
         # Adjust this as needed
         command: 'cd proto && make compile'

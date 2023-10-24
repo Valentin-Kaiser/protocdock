@@ -15,13 +15,13 @@ runs:
       with:
         fetch-depth: 0
     - run: |
-        docker pull ghcr.io/valentin-kaiser/docker-proto-compiler:latest
-        docker run --rm -v ${{ github.workspace }}:/app ghcr.io/valentin-kaiser/docker-proto-compiler:latest '${{ inputs.command }}'
+        docker pull ghcr.io/valentin-kaiser/protocdock:latest
+        docker run --rm -v ${{ github.workspace }}:/app ghcr.io/valentin-kaiser/protocdock:latest '${{ inputs.command }}'
       shell: bash
     - name: Commit and push if changes
       run: |
         git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.name "Protoc Docker Action"
         git diff
         git add -A
         git commit -m "${{ inputs.commit_message }}" || echo "No changes to commit"

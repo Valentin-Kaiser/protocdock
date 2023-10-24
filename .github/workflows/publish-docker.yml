@@ -5,7 +5,7 @@ name: Publish Docker Image
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/valentin-kaiser/docker-proto-compiler
+            ghcr.io/valentin-kaiser/protocdock
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
       -
