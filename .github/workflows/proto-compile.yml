@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Use custom proto compiler and committer action
-      uses: Valentin-Kaiser/docker-proto-compiler@main
+      uses: valentin-kaiser/docker-proto-compiler@main
       with:
         command: 'cd proto && make'
         commit_message: '[GEN] Updated compiled proto definitions'

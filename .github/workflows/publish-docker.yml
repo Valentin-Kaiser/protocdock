@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/Valentin-Kaiser/docker-proto-compiler
+            ghcr.io/valentin-kaiser/docker-proto-compiler
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
       -
