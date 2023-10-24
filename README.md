@@ -9,14 +9,6 @@ This is a Docker image for a bundle of the [Protocol Buffer Compiler](https://gi
 
 ## Usage
 
-Execute the Makefile to build the image and put your proto files in the `proto` directory:
-
-```bash
-make
-```
-
-or run the following command directly:
-
 ```bash
 docker build -t proto-compiler:latest .
 docker compose up -d
