@@ -2,6 +2,6 @@ syntax = "proto3";
 
 package generic;
 
-option go_package = "generic";
+option go_package = "docker-proto-compiler/generic";
 
 message Empty {}
