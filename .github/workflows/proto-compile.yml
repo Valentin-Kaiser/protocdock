@@ -10,5 +10,5 @@ jobs:
     - name: Use custom proto compiler and committer action
       uses: valentin-kaiser/docker-proto-compiler@main
       with:
-        command: 'cd proto && make proto'
+        command: 'cd proto && make compile'
         commit_message: '[GEN] Updated compiled proto definitions'
