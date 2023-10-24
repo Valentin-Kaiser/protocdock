@@ -12,12 +12,13 @@ ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2
 ARG GRPC_WEB_VERSION=1.4.2
 ARG PROTOC_GEN_DOC_VERSION=1.5.1
 
-# Set environment variables for Golang
+# Set environment variables for Golang, Protoc, Plugins and the PATH
 ENV GOROOT=/root/.local/go \
     GOPATH=/root/.local \
     PATH=$GOPATH/bin:$GOROOT/bin:/root/.local/bin:$PATH \
     PATH=$PATH:/root/.local/go/bin:/root/.local/bin \
-    GO111MODULE=on 
+    GO111MODULE=on \
+    PROTOC_GENT_TS_PATH=/root/.local/protobuf-javascript/bin/protoc-gen-ts
 
 # Install base packages
 RUN apt-get update && apt-get install -y curl git make unzip && mkdir -p /root/.local/bin
@@ -53,7 +54,7 @@ RUN curl -LO https://github.com/protocolbuffers/protobuf-javascript/releases/dow
     rm protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz
 
 # Set the working directory
-WORKDIR /app/proto
+WORKDIR /app
 
 # Define the entrypoint
 ENTRYPOINT ["/bin/bash", "-l", "-c"]

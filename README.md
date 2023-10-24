@@ -23,4 +23,25 @@ docker compose up -d
 docker exec -it proto-compiler /bin/bash
 ```
 
+## Github Action
 
+You can use this image in a Github Action to generate the code for your proto files:
+
+```yaml
+name: Compile and Commit Proto with Action
+
+on: [push]
+
+jobs:
+  compile-and-commit-proto:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Use custom proto compiler and committer action
+      uses: Valentin-Kaiser/proto-compiler-repo/action@main
+      with:
+        # Adjust this as needed
+        command: 'cd proto && make'
+        commit_message: '[GEN] Updated compiled proto definitions'
+
+```

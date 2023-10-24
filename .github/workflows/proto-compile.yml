@@ -1,0 +1,14 @@
+name: Compile and Commit Proto with Action
+
+on: [push]
+
+jobs:
+  compile-and-commit-proto:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Use custom proto compiler and committer action
+      uses: Valentin-Kaiser/proto-compiler-repo/action@main # Adjust this as needed
+      with:
+        command: 'cd proto && make'
+        commit_message: '[GEN] Updated compiled proto definitions'

@@ -1,0 +1,26 @@
+name: Proto Compiler Action
+description: 'A GitHub Action to compile protobuf files for golang and javascript/typescript'
+inputs:
+  commit_message:
+    description: 'Commit message for the changes'
+    required: true
+  command:
+    description: 'Custom protoc command to run inside the Docker container with this repository mounted to the Working Directory /app'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - run: |
+        docker pull ghcr.io/Valentin-Kaiser/proto-compiler-repo:latest
+        docker run --rm -v $(pwd):/app ghcr.io/Valentin-Kaiser/proto-compiler-repo:latest ${{ inputs.command }}
+      shell: bash
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "${{ inputs.commit_message }}" || echo "No changes to commit"
+        git push
+      shell: bash

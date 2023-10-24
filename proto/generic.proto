@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package generic;
+
+option go_package = "generic";
+
+message Empty {}
