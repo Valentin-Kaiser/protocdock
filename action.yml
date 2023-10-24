@@ -16,7 +16,7 @@ runs:
         fetch-depth: 0
     - run: |
         docker pull ghcr.io/valentin-kaiser/docker-proto-compiler:latest
-        docker run --rm -v ${{ github.workspace }}:/app ghcr.io/valentin-kaiser/docker-proto-compiler:latest bash -c "${{ inputs.command }}"
+        docker run --rm -v ${{ github.workspace }}:/app ghcr.io/valentin-kaiser/docker-proto-compiler:latest bash -c '${{ inputs.command }}'
       shell: bash
     - name: Commit and push if changes
       run: |
