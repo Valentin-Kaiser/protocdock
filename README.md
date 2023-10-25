@@ -13,26 +13,8 @@ This is a Docker image for a bundle of the proto compiler and the following plug
 
 ## Usage
 
-Pull the container:
 
-```bash
-docker pull ghcr.io/valentin-kaiser/protocdock:latest
-```
-
-Run the container via compose and enter the container:
-
-```bash
-docker compose up -d
-docker exec -it proto-compiler /bin/bash
-```
-
-The compose maps a volume to the `proto` folder in the root of this repository. You can now run the `protoc` command to compile your proto files.
-
-```bash
-protoc generic.proto --plugin=ts-protoc-gen=$PROTOC_GEN_TS_PATH --go_out=./gen/ --go-grpc_out=./gen/ --js_out="import_style=commonjs,binary:./gen/" --grpc-web_out="import_style=typescript,mode=grpcweb:./gen/" --proto_path=/app/proto
-```
-
-## GitHub Action
+### GitHub Action
 
 You can use this image in a GitHub Action to generate the code for your proto files:
 
@@ -52,3 +34,52 @@ jobs:
         command: 'cd proto && rm -r ./gen/ && mkdir -p ./gen/ && protoc generic.proto --plugin=ts-protoc-gen=$PROTOC_GEN_TS_PATH --go_out=./gen/ --go-grpc_out=./gen/ --js_out="import_style=commonjs,binary:./gen/" --grpc-web_out="import_style=typescript,mode=grpcweb:./gen/" --proto_path=/app/proto'
         commit_message: '[GEN] Updated compiled proto definitions'
 ```
+
+### Docker
+
+Pull the container:
+
+```bash
+docker pull ghcr.io/valentin-kaiser/protocdock:latest
+```
+
+Run the container via compose and enter the container:
+
+```bash
+docker compose up -d
+docker exec -it proto-compiler /bin/bash
+```
+
+The compose maps a volume to the `proto` folder in the root of this repository. You can now run the `protoc` command to compile your proto files.
+
+```bash
+protoc generic.proto --plugin=ts-protoc-gen=$PROTOC_GEN_TS_PATH --go_out=./gen/ --go-grpc_out=./gen/ --js_out="import_style=commonjs,binary:./gen/" --grpc-web_out="import_style=typescript,mode=grpcweb:./gen/" --proto_path=/app/proto
+```
+
+### Different versions
+
+To use a different version of the compiler or a plugin, you have to build the image yourself. You can do this by running the following command in the root of this repository:
+
+```bash
+docker build -t protocdock:latest --build-arg <argument>=<version>  .
+```
+
+The available versio arguments are:
+
+| Argument | Default | Description |
+| -------- | ------- | ----------- |
+| `PROTOC_VERSION` | `24.4` | The version of the Protocol Buffer Compiler |
+| `PROTOC_GEN_GO_VERSION` | `1.31.0` | The version of the Go plugin |
+| `PROTOC_GEN_GO_GRPC_VERSION` | `1.3.0` | The version of the Go gRPC plugin |
+| `PROTOBUF_JAVASCRIPT_VERSION` | `3.21.2` | The version of the JavaScript plugin |
+| `GRPC_WEB_VERSION` | `1.4.2` | The version of the gRPC Web plugin |
+| `PROTOC_GEN_DOC_VERSION` | `1.5.1` | The version of the documentation plugin |
+| --- | --- | --- |
+| `CURL_VERSION` | `7.68.0-1ubuntu2.20` | The version of curl |
+| `GIT_VERSION` | `1:2.25.1-1ubuntu3.11` | The version of git |
+| `MAKE_VERSION` | `4.2.1-1.2` | The version of make |
+| `UNZIP_VERSION` | `6.0-25ubuntu1.1` | The version of unzip |
+| `NODE_MAJOR` | `20.x` | The version of node |
+| `GO_VERSION` | `1.21.3` | The version of go |
+| `CA_CERTIFICATES_VERSION` | `20230311ubuntu0.20.04.1` | The version of ca-certificates |
+| `GNUPG_VERSION` | `2.2.19-3ubuntu2.2` | The version of gnupg |
