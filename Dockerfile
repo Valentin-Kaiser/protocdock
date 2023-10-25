@@ -8,6 +8,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG NODE_MAJOR=20.x
 ARG GO_VERSION=1.21.3
 ARG PROTOC_VERSION=24.4
+ARG PROTOC_GEN_GO_VERSION=1.31.0
+ARG PROTOC_GEN_GO_GRPC_VERSION=1.3.0
 ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2
 ARG GRPC_WEB_VERSION=1.4.2
 ARG PROTOC_GEN_DOC_VERSION=1.5.1
@@ -40,8 +42,8 @@ RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v${PR
     rm protoc-${PROTOC_VERSION}-linux-x86_64.zip
 
 # Install ProtoC-Gen-Go plugins
-RUN go install github.com/golang/protobuf/protoc-gen-go@latest && \
-    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v${PROTOC_GEN_GO_VERSION} && \
+    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v${PROTOC_GEN_GO_GRPC_VERSION}
 
 # Install GRPC-Web
 RUN curl -LO https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 && \
@@ -52,6 +54,12 @@ RUN curl -LO https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSI
 RUN curl -LO https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${PROTOBUF_JAVASCRIPT_VERSION}/protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz && \
     tar -xzf protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz -C /root/.local && \
     rm protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz
+
+# Install Protoc-Gen-Doc
+RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${PROTOC_GEN_DOC_VERSION}/protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz && \
+    tar -xzf protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz -C /root/.local/bin && \
+    chmod +x /root/.local/bin/protoc-gen-doc && \
+    rm protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz
 
 # Set the working directory
 WORKDIR /app
