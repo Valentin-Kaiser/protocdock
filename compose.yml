@@ -1,12 +1,13 @@
+---
+
 version: '3.8'
 
 services:
   proto-compiler:
-    image: proto-compiler:latest
+    image: ghcr.io/valentin-kaiser/protocdock:latest
     container_name: proto-compiler
     command: "/bin/bash"
     stdin_open: true
     tty: true
     volumes:
       - ./proto:/app/proto
-
