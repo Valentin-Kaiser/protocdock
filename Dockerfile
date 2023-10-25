@@ -5,6 +5,10 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Define default versions that can be overridden during build
+ARG CURL_VERSION=7.68.0-1ubuntu2.20
+ARG GIT_VERSION=1:2.25.1-1ubuntu3.11
+ARG MAKE_VERSION=4.2.1-1.2
+ARG UNZIP_VERSION=6.0-25ubuntu1.1
 ARG NODE_MAJOR=20.x
 ARG GO_VERSION=1.21.3
 ARG PROTOC_VERSION=24.4
@@ -15,21 +19,25 @@ ARG GRPC_WEB_VERSION=1.4.2
 ARG PROTOC_GEN_DOC_VERSION=1.5.1
 
 # Set environment variables for Golang, Protoc, Plugins and the PATH
-ENV GOROOT=/root/.local/go \
-    GOPATH=/root/.local \
-    PATH=$GOPATH/bin:$GOROOT/bin:/root/.local/bin:$PATH \
-    PATH=$PATH:/root/.local/go/bin:/root/.local/bin \
-    GO111MODULE=on \
-    PROTOC_GENT_TS_PATH=/root/.local/protobuf-javascript/bin/protoc-gen-ts
+ENV GOROOT=/root/.local/go 
+ENV GOPATH=/root/.local 
+ENV GO111MODULE=on 
+ENV PROTOC_GENT_TS_PATH=/root/.local/protobuf-javascript/bin/protoc-gen-ts
+ENV PATH=$GOPATH/bin:$GOROOT/bin:/root/.local/bin:$PATH:/root/.local/go/bin:/root/.local/bin
 
-# Install base packages
-RUN apt-get update && apt-get install -y curl git make unzip && mkdir -p /root/.local/bin
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update && \
-    apt-get install -y ca-certificates curl gnupg && \
+    apt-get install -y --no-install-recommends curl=${CURL_VERSION} git=${GIT_VERSION} make=${MAKE_VERSION} unzip=${UNZIP_VERSION} && \
+    mkdir -p /root/.local/bin && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates curl gnupg && \
     mkdir -p /etc/apt/keyrings/ && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Golang
 RUN curl -O https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \

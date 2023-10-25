@@ -1,6 +1,6 @@
 # Docker Protocol Buffer Compiler
 
-This is a Docker image for a bundle of the proto compiler and the following plugins, for golang and javascript & typescript:
+This is a Docker image for a bundle of the proto compiler and the following plugins, for Golang and JavaScript & TypeScript:
 
 | Software | Version |
 | -------- | ------- |
@@ -32,9 +32,9 @@ The compose maps a volume to the `proto` folder in the root of this repository. 
 protoc generic.proto --plugin=ts-protoc-gen=$PROTOC_GEN_TS_PATH --go_out=./gen/ --go-grpc_out=./gen/ --js_out="import_style=commonjs,binary:./gen/" --grpc-web_out="import_style=typescript,mode=grpcweb:./gen/" --proto_path=/app/proto
 ```
 
-## Github Action
+## GitHub Action
 
-You can use this image in a Github Action to generate the code for your proto files:
+You can use this image in a GitHub Action to generate the code for your proto files:
 
 ```yaml
 name: ProtocDock

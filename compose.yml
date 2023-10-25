@@ -1,3 +1,5 @@
+---
+
 version: '3.8'
 
 services:
@@ -9,4 +11,3 @@ services:
     tty: true
     volumes:
       - ./proto:/app/proto
-
