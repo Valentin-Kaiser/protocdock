@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="protocdock.png" width="300">
+</p>
+
 # Docker Protocol Buffer Compiler
 
 This is a Docker image for a bundle of the proto compiler and the following plugins, for Golang and JavaScript/TypeScript:
