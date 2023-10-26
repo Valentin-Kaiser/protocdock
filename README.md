@@ -17,7 +17,6 @@ This is a Docker image for a bundle of the proto compiler and the following plug
 
 ## Usage
 
-
 ### GitHub Action
 
 You can use this image in a GitHub Action to generate the code for your proto files:
@@ -70,20 +69,20 @@ docker build -t protocdock:latest --build-arg <argument>=<version>  .
 
 The available version arguments are:
 
-| Argument | Default | Description |
-| -------- | ------- | ----------- |
-| `PROTOC_VERSION` | `24.4` | The version of the Protocol Buffer Compiler |
-| `PROTOC_GEN_GO_VERSION` | `1.31.0` | The version of the Go plugin |
-| `PROTOC_GEN_GO_GRPC_VERSION` | `1.3.0` | The version of the Go gRPC plugin |
-| `PROTOBUF_JAVASCRIPT_VERSION` | `3.21.2` | The version of the JavaScript plugin |
-| `GRPC_WEB_VERSION` | `1.4.2` | The version of the gRPC Web plugin |
-| `PROTOC_GEN_DOC_VERSION` | `1.5.1` | The version of the documentation plugin |
-| --- | --- | --- |
-| `CURL_VERSION` | `7.68.0-1ubuntu2.20` | The version of curl |
-| `GIT_VERSION` | `1:2.25.1-1ubuntu3.11` | The version of git |
-| `MAKE_VERSION` | `4.2.1-1.2` | The version of make |
-| `UNZIP_VERSION` | `6.0-25ubuntu1.1` | The version of unzip |
-| `NODE_MAJOR` | `20.x` | The version of node |
-| `GO_VERSION` | `1.21.3` | The version of go |
-| `CA_CERTIFICATES_VERSION` | `20230311ubuntu0.20.04.1` | The version of ca-certificates |
-| `GNUPG_VERSION` | `2.2.19-3ubuntu2.2` | The version of gnupg |
+| Argument | Default |
+| -------- | ------- |
+| `PROTOC_VERSION` | `24.4` |
+| `PROTOC_GEN_GO_VERSION` | `1.31.0` |
+| `PROTOC_GEN_GO_GRPC_VERSION` | `1.3.0` |
+| `PROTOBUF_JAVASCRIPT_VERSION` | `3.21.2` |plugin |
+| `GRPC_WEB_VERSION` | `1.4.2` |
+| `PROTOC_GEN_DOC_VERSION` | `1.5.1` |
+| --- | --- |
+| `CURL_VERSION` | `7.68.0-1ubuntu2.20` |
+| `GIT_VERSION` | `1:2.25.1-1ubuntu3.11` |
+| `MAKE_VERSION` | `4.2.1-1.2` |
+| `UNZIP_VERSION` | `6.0-25ubuntu1.1` |
+| `NODE_MAJOR` | `20.x` |
+| `GO_VERSION` | `1.21.3` |
+| `CA_CERTIFICATES_VERSION` | `20230311ubuntu0.20.04.1` |ca-certificates |
+| `GNUPG_VERSION` | `2.2.19-3ubuntu2.2` |
