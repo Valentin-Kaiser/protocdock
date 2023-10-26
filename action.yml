@@ -1,5 +1,8 @@
 name: Proto Compiler Action
 description: 'A GitHub Action to compile protobuf files for golang and javascript/typescript'
+branding:
+  icon: 'package'
+  color: 'yellow'
 inputs:
   commit_message:
     description: 'Commit message for the changes'
