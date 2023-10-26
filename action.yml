@@ -1,4 +1,4 @@
-name: Proto Compiler Action
+name: Protobuffer Compile Action
 description: 'A GitHub Action to compile protobuf files for golang and javascript/typescript'
 branding:
   icon: 'package'
@@ -17,6 +17,7 @@ runs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        ref: ${{ github.ref }}
     - run: |
         docker pull ghcr.io/valentin-kaiser/protocdock:latest
         docker run --rm -v ${{ github.workspace }}:/app ghcr.io/valentin-kaiser/protocdock:latest '${{ inputs.command }}'
