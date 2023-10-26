@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="protocdock.png" width="300">
+</p>
+
 # Docker Protocol Buffer Compiler
 
-This is a Docker image for a bundle of the proto compiler and the following plugins, for Golang and JavaScript & TypeScript:
+This is a Docker image for a bundle of the proto compiler and the following plugins, for Golang and JavaScript/TypeScript:
 
 | Software | Version |
 | -------- | ------- |
@@ -64,7 +68,7 @@ To use a different version of the compiler or a plugin, you have to build the im
 docker build -t protocdock:latest --build-arg <argument>=<version>  .
 ```
 
-The available versio arguments are:
+The available version arguments are:
 
 | Argument | Default | Description |
 | -------- | ------- | ----------- |
