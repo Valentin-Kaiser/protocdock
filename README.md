@@ -8,10 +8,10 @@ This is a Docker image for a bundle of the proto compiler and the following plug
 
 | Software | Version |
 | -------- | ------- |
-| [Protocol Buffer Compiler](https://github.com/protocolbuffers/protobuf) | 24.4 |
+| [Protocol Buffer Compiler](https://github.com/protocolbuffers/protobuf) | 25.0 |
 | [protoc-gen-go](https://google.golang.org/protobuf) | 1.31.0 |
 | [protoc-gen-go-grpc](https://google.golang.org/grpc/cmd/protoc-gen-go-grpc) | 1.3.0 |
-| [grpc-web](https://github.com/grpc/grpc-web) | 1.4.2 |
+| [grpc-web](https://github.com/grpc/grpc-web) | 1.5.0 |
 | [protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript) | 3.21.2 |
 | [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc) | 1.5.1 |
 
@@ -71,11 +71,11 @@ The available version arguments are:
 
 | Argument | Default |
 | -------- | ------- |
-| `PROTOC_VERSION` | `24.4` |
+| `PROTOC_VERSION` | `25.0` |
 | `PROTOC_GEN_GO_VERSION` | `1.31.0` |
 | `PROTOC_GEN_GO_GRPC_VERSION` | `1.3.0` |
 | `PROTOBUF_JAVASCRIPT_VERSION` | `3.21.2` |
-| `GRPC_WEB_VERSION` | `1.4.2` |
+| `GRPC_WEB_VERSION` | `1.5.0` |
 | `PROTOC_GEN_DOC_VERSION` | `1.5.1` |
 | --- | --- |
 | `CURL_VERSION` | `7.68.0-1ubuntu2.20` |

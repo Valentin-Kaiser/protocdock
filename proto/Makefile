@@ -1,0 +1,2 @@
+proto:
+	protoc generic.proto --plugin=ts-protoc-gen=$PROTOC_GEN_TS_PATH --go_out=./gen/ --go-grpc_out=./gen/ --js_out="import_style=commonjs,binary:./gen/" --grpc-web_out="import_style=typescript,mode=grpcweb:./gen/" --proto_path=/app/proto
