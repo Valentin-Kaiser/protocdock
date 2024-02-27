@@ -23,34 +23,36 @@ ARG GRPC_WEB_VERSION=1.5.0                  # https://github.com/grpc/grpc-web/r
 ARG PROTOC_GEN_DOC_VERSION=1.5.1            # https://github.com/pseudomuto/protoc-gen-doc/releases
 
 # Set environment variables for Golang, Protoc, Plugins and the PATH
-ENV GOROOT=/root/.local/go 
-ENV GOPATH=/root/.local 
+ENV INSTALL_DIR=/usr/local
+ENV GOPATH=$INSTALL_DIR
+ENV GOROOT=$INSTALL_DIR/go
 ENV GO111MODULE=on 
-ENV PROTOC_GENT_TS_PATH=/root/.local/protobuf-javascript/bin/protoc-gen-ts
-ENV PATH=$GOPATH/bin:$GOROOT/bin:/root/.local/bin:$PATH:/root/.local/go/bin:/root/.local/bin
+ENV PATH=$PATH:$INSTALL_DIR:$GOROOT/bin
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN mkdir -p /app && \
+    mkdir -p $INSTALL_DIR/bin && \
+    mkdir -p /etc/apt/keyrings/
+
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl=${CURL_VERSION} git=${GIT_VERSION} make=${MAKE_VERSION} unzip=${UNZIP_VERSION} && \
-    mkdir -p /root/.local/bin && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends curl=${CURL_VERSION} git=${GIT_VERSION} make=${MAKE_VERSION} unzip=${UNZIP_VERSION}
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates=${CA_CERTIFICATES_VERSION} gnupg=${GNUPG_VERSION} && \
-    mkdir -p /etc/apt/keyrings/ && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list && \
-    rm -rf /var/lib/apt/lists/*
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install Golang
 RUN curl -O https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
-    tar -xzf go${GO_VERSION}.linux-amd64.tar.gz -C /root/.local && \
+    tar -xzf go${GO_VERSION}.linux-amd64.tar.gz -C /usr/local && \
     rm go${GO_VERSION}.linux-amd64.tar.gz
 
 # Install Protocol Buffers Compiler
 RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protoc-${PROTOC_VERSION}-linux-x86_64.zip && \
-    unzip protoc-${PROTOC_VERSION}-linux-x86_64.zip -d /root/.local && \
+    unzip protoc-${PROTOC_VERSION}-linux-x86_64.zip -d $INSTALL_DIR && \
     rm protoc-${PROTOC_VERSION}-linux-x86_64.zip
 
 # Install ProtoC-Gen-Go plugins
@@ -60,18 +62,27 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v${PROTOC_GEN_GO_VER
 # Install GRPC-Web
 RUN curl -LO https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 && \
     chmod +x protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 && \
-    mv protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 /root/.local/bin/protoc-gen-grpc-web
+    mv protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64 $INSTALL_DIR/bin/protoc-gen-grpc-web
 
 # Install Protobuf for JavaScript
 RUN curl -LO https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${PROTOBUF_JAVASCRIPT_VERSION}/protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz && \
-    tar -xzf protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz -C /root/.local && \
+    tar -xzf protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz -C $INSTALL_DIR && \
     rm protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz
 
 # Install Protoc-Gen-Doc
 RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${PROTOC_GEN_DOC_VERSION}/protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz && \
-    tar -xzf protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz -C /root/.local/bin && \
-    chmod +x /root/.local/bin/protoc-gen-doc && \
+    tar -xzf protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz -C $INSTALL_DIR/bin && \
+    chmod +x $INSTALL_DIR/bin/protoc-gen-doc && \
     rm protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz
+
+
+# Create a non-root user and switch to it
+RUN groupadd -r proto && useradd --no-log-init -r -g proto proto && \
+    chown -R proto:proto /app && chown -R proto:proto $INSTALL_DIR
+USER proto
+
+# # Define a basic healthcheck (Example: For a web server, replace with actual server check command)
+HEALTHCHECK --interval=10s --timeout=10s --start-period=5s CMD [ "protoc", "--version" ]
 
 # Set the working directory
 WORKDIR /app
