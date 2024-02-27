@@ -1,26 +1,26 @@
 # Use Ubuntu as the base image
-FROM ubuntu:20.04
+FROM debian:stable-slim
 
 # Avoid prompts from apt during build
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Define default versions for tools needed to install Golang, Protoc, Plugins and the PATH
-ARG CURL_VERSION=7.68.0-1ubuntu2.20
-ARG GIT_VERSION=1:2.25.1-1ubuntu3.11
-ARG MAKE_VERSION=4.2.1-1.2
-ARG UNZIP_VERSION=6.0-25ubuntu1.1
-ARG NODE_MAJOR=20.x
-ARG GO_VERSION=1.21.3
-ARG CA_CERTIFICATES_VERSION=20230311ubuntu0.20.04.1
-ARG GNUPG_VERSION=2.2.19-3ubuntu2.2
+ARG CURL_VERSION=7.88.1-10+deb12u5          # https://packages.debian.org/bookworm/curl
+ARG GIT_VERSION=1:2.39.2-1.1                # https://packages.debian.org/bookworm/git
+ARG MAKE_VERSION=4.3-4.1                    # https://packages.debian.org/bookworm/make
+ARG UNZIP_VERSION=6.0-28                    # https://packages.debian.org/bookworm/unzip
+ARG CA_CERTIFICATES_VERSION=20230311        # https://packages.debian.org/bookworm/ca-certificates
+ARG GNUPG_VERSION=2.2.40-1.1                # https://packages.debian.org/bookworm/gnupg
+ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
+ARG GO_VERSION=1.22.0                       # https://github.com/golang/go/tags
 
 # Defined default version for Protoc and Plugins
-ARG PROTOC_VERSION=25.0
-ARG PROTOC_GEN_GO_VERSION=1.31.0
-ARG PROTOC_GEN_GO_GRPC_VERSION=1.3.0
-ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2
-ARG GRPC_WEB_VERSION=1.5.0
-ARG PROTOC_GEN_DOC_VERSION=1.5.1
+ARG PROTOC_VERSION=25.3                     # https://github.com/protocolbuffers/protobuf/releases
+ARG PROTOC_GEN_GO_VERSION=1.32.0            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
+ARG PROTOC_GEN_GO_GRPC_VERSION=1.3.0        # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
+ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2      # https://github.com/protocolbuffers/protobuf-javascript/releases
+ARG GRPC_WEB_VERSION=1.5.0                  # https://github.com/grpc/grpc-web/releases
+ARG PROTOC_GEN_DOC_VERSION=1.5.1            # https://github.com/pseudomuto/protoc-gen-doc/releases
 
 # Set environment variables for Golang, Protoc, Plugins and the PATH
 ENV GOROOT=/root/.local/go 
