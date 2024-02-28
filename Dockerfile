@@ -78,6 +78,8 @@ RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${P
 # # Define a basic healthcheck (Example: For a web server, replace with actual server check command)
 HEALTHCHECK --interval=10s --timeout=10s --start-period=5s CMD [ "protoc", "--version" ]
 
+#checkov:skip=CKV_DOCKER_3:USER is not supported with github actions
+
 # Set the working directory
 WORKDIR /app
 
