@@ -75,12 +75,6 @@ RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${P
     chmod +x $INSTALL_DIR/bin/protoc-gen-doc && \
     rm protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz
 
-
-# Create a non-root user and switch to it
-RUN groupadd -r proto && useradd --no-log-init -r -g proto -u 1000 -m proto && \
-    chown -R proto:proto /app && chown -R proto:proto $INSTALL_DIR
-USER proto
-
 # # Define a basic healthcheck (Example: For a web server, replace with actual server check command)
 HEALTHCHECK --interval=10s --timeout=10s --start-period=5s CMD [ "protoc", "--version" ]
 
