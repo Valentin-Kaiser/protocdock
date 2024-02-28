@@ -1,10 +1,6 @@
 name: ProtocDock
 
-on:
-  push:
-    paths:
-      - 'proto/**' # When the proto files are updated we want to recompile them
-      - 'Dockerfile' # When the Dockerfile is updated we want to recompile the proto files with the new action
+on: [push]
 
 permissions:
   contents: write

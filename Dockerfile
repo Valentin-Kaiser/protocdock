@@ -77,7 +77,7 @@ RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${P
 
 
 # Create a non-root user and switch to it
-RUN groupadd -r proto && useradd --no-log-init -r -g proto proto && \
+RUN groupadd -r proto && useradd --no-log-init -r -g proto -u 1000 -m proto && \
     chown -R proto:proto /app && chown -R proto:proto $INSTALL_DIR
 USER proto
 
