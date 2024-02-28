@@ -2,11 +2,7 @@
 
 name: Github Super-Linter
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push, pull_request]
 
 permissions:
   contents: read
