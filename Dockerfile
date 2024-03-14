@@ -15,8 +15,8 @@ ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
 ARG GO_VERSION=1.22.0                       # https://github.com/golang/go/tags
 
 # Defined default version for Protoc and Plugins
-ARG PROTOC_VERSION=25.3                     # https://github.com/protocolbuffers/protobuf/releases
-ARG PROTOC_GEN_GO_VERSION=1.32.0            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
+ARG PROTOC_VERSION=26.0                     # https://github.com/protocolbuffers/protobuf/releases
+ARG PROTOC_GEN_GO_VERSION=1.33.0            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.3.0        # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
 ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2      # https://github.com/protocolbuffers/protobuf-javascript/releases
 ARG GRPC_WEB_VERSION=1.5.0                  # https://github.com/grpc/grpc-web/releases
