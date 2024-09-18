@@ -5,20 +5,20 @@ FROM debian:stable-slim
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Define default versions for tools needed to install Golang, Protoc, Plugins and the PATH
-ARG CURL_VERSION=7.88.1-10+deb12u5          # https://packages.debian.org/bookworm/curl
-ARG GIT_VERSION=1:2.39.2-1.1                # https://packages.debian.org/bookworm/git
-ARG MAKE_VERSION=4.3-4.1                    # https://packages.debian.org/bookworm/make
+ARG CURL_VERSION=7.88.*          # https://packages.debian.org/bookworm/curl
+ARG GIT_VERSION=1:2.39.*                # https://packages.debian.org/bookworm/git
+ARG MAKE_VERSION=4.3-*                    # https://packages.debian.org/bookworm/make
 ARG UNZIP_VERSION=6.0-28                    # https://packages.debian.org/bookworm/unzip
 ARG CA_CERTIFICATES_VERSION=20230311        # https://packages.debian.org/bookworm/ca-certificates
-ARG GNUPG_VERSION=2.2.40-1.1                # https://packages.debian.org/bookworm/gnupg
+ARG GNUPG_VERSION=2.2.40-*                # https://packages.debian.org/bookworm/gnupg
 ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
-ARG GO_VERSION=1.22.3                       # https://github.com/golang/go/tags
+ARG GO_VERSION=1.23.1                       # https://github.com/golang/go/tags
 
 # Defined default version for Protoc and Plugins
-ARG PROTOC_VERSION=26.1                     # https://github.com/protocolbuffers/protobuf/releases
-ARG PROTOC_GEN_GO_VERSION=1.34.1            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
-ARG PROTOC_GEN_GO_GRPC_VERSION=1.3.0        # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
-ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.2      # https://github.com/protocolbuffers/protobuf-javascript/releases
+ARG PROTOC_VERSION=28.1                     # https://github.com/protocolbuffers/protobuf/releases
+ARG PROTOC_GEN_GO_VERSION=1.34.2            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
+ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1        # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
+ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4      # https://github.com/protocolbuffers/protobuf-javascript/releases
 ARG GRPC_WEB_VERSION=1.5.0                  # https://github.com/grpc/grpc-web/releases
 ARG PROTOC_GEN_DOC_VERSION=1.5.1            # https://github.com/pseudomuto/protoc-gen-doc/releases
 
