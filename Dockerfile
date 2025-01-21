@@ -28,7 +28,7 @@ ARG GNUPG_VERSION=2.2.40-*                # https://packages.debian.org/bookworm
 ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
-ARG GO_VERSION=1.23.1
+ARG GO_VERSION=1.23.5
 
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
@@ -36,7 +36,7 @@ ARG GO_VERSION=1.23.1
 ARG PROTOC_VERSION=29.3
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
-ARG PROTOC_GEN_GO_VERSION=1.34.2
+ARG PROTOC_GEN_GO_VERSION=1.36.3
 # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
 # renovate: datasource=go depName=protoc-gen-go-grpc packageName=google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
