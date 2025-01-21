@@ -1,26 +1,54 @@
-# Use Ubuntu as the base image
+# Use debian stable-slim as the base image
 FROM debian:stable-slim
 
 # Avoid prompts from apt during build
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Define default versions for tools needed to install Golang, Protoc, Plugins and the PATH
-ARG CURL_VERSION=7.88.*          # https://packages.debian.org/bookworm/curl
-ARG GIT_VERSION=1:2.39.*                # https://packages.debian.org/bookworm/git
-ARG MAKE_VERSION=4.3-*                    # https://packages.debian.org/bookworm/make
+# https://packages.debian.org/stable/curl
+# renovate: release=stable depName=curl
+ARG CURL_VERSION=7.88.*
+# https://packages.debian.org/stable/git
+# renovate: release=stable depName=git
+ARG GIT_VERSION=1:2.39.*
+# https://packages.debian.org/stable/make
+# renovate: release=stable depName=make
+ARG MAKE_VERSION=4.3-*
+# https://packages.debian.org/stable/upzip
+# renovate: release=stable depName=unzip
 ARG UNZIP_VERSION=6.0-28                    # https://packages.debian.org/bookworm/unzip
+# https://packages.debian.org/stable/ca-certificates
+# renovate: release=stable depName=ca-certificates
 ARG CA_CERTIFICATES_VERSION=20230311        # https://packages.debian.org/bookworm/ca-certificates
+# https://packages.debian.org/stable/gnupg
+# renovate: release=stable depName=gnupg
 ARG GNUPG_VERSION=2.2.40-*                # https://packages.debian.org/bookworm/gnupg
+# https://deb.nodesource.com/
+# renovate: datasource=node-version depName=node packageName=node
 ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
-ARG GO_VERSION=1.23.1                       # https://github.com/golang/go/tags
+# https://github.com/golang/go/tags
+# renovate: datasource=golang-version depName=go packageName=go
+ARG GO_VERSION=1.23.5
 
 # Defined default version for Protoc and Plugins
-ARG PROTOC_VERSION=28.1                     # https://github.com/protocolbuffers/protobuf/releases
-ARG PROTOC_GEN_GO_VERSION=1.34.2            # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
-ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1        # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
+# https://github.com/protocolbuffers/protobuf
+# renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf/releases
+ARG PROTOC_VERSION=29.3
+# https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
+# renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
+ARG PROTOC_GEN_GO_VERSION=1.36.3
+# https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
+# renovate: datasource=go depName=protoc-gen-go-grpc packageName=google.golang.org/grpc/cmd/protoc-gen-go-grpc
+ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
+# https://github.com/protocolbuffers/protobuf-javascript/releases
+# renovate: datasource=github-releases depName=protobuf-javascript packageName=protocolbuffers/protobuf-javascript
 ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4      # https://github.com/protocolbuffers/protobuf-javascript/releases
-ARG GRPC_WEB_VERSION=1.5.0                  # https://github.com/grpc/grpc-web/releases
-ARG PROTOC_GEN_DOC_VERSION=1.5.1            # https://github.com/pseudomuto/protoc-gen-doc/releases
+# https://github.com/grpc/grpc-web/releases
+# renovate: datasource=github-releases depName=grpc-web packageName=grpc/grpc-web
+ARG GRPC_WEB_VERSION=1.5.0
+# https://github.com/pseudomuto/protoc-gen-doc/releases
+# renovate: datasource=github-releases depName=grpc-web packageName=pseudomuto/protoc-gen-doc
+ARG PROTOC_GEN_DOC_VERSION=1.5.1
 
 # Set environment variables for Golang, Protoc, Plugins and the PATH
 ENV INSTALL_DIR=/usr/local
