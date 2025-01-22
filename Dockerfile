@@ -1,5 +1,5 @@
 # Use debian stable-slim as the base image
-FROM debian:stable
+FROM debian:stable-slim
 
 # Avoid prompts from apt during build
 ARG DEBIAN_FRONTEND=noninteractive
@@ -7,22 +7,22 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Define default versions for tools needed to install Golang, Protoc, Plugins and the PATH
 # https://packages.debian.org/stable/curl
 # renovate: release=stable depName=curl
-ARG CURL_VERSION=7.88.1-10+deb12u8
+ARG CURL_VERSION=7.68.1-10+deb12u8
 # https://packages.debian.org/stable/git
 # renovate: release=stable depName=git
-ARG GIT_VERSION=1:2.39.5-0+deb12u1
+ARG GIT_VERSION=1:2.37.5-0+deb12u1
 # https://packages.debian.org/stable/make
 # renovate: release=stable depName=make
-ARG MAKE_VERSION=4.3-4.1
+ARG MAKE_VERSION=4.1-4.1
 # https://packages.debian.org/stable/upzip
 # renovate: release=stable depName=unzip
-ARG UNZIP_VERSION=6.0-28
+ARG UNZIP_VERSION=6.0-18
 # https://packages.debian.org/stable/ca-certificates
 # renovate: release=stable depName=ca-certificates
 ARG CA_CERTIFICATES_VERSION=20230311
 # https://packages.debian.org/stable/gnupg
 # renovate: release=stable depName=gnupg
-ARG GNUPG_VERSION=2.2.40-1.1
+ARG GNUPG_VERSION=2.1.40-1.1
 # https://deb.nodesource.com/
 # renovate: datasource=node-version depName=node packageName=node
 ARG NODE_SETUP_VERSION=22.x
@@ -35,7 +35,7 @@ ARG GO_VERSION=1.23.5
 
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
-# renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf/releases
+# renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf
 ARG PROTOC_VERSION=29.3
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
