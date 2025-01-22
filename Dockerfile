@@ -25,7 +25,10 @@ ARG CA_CERTIFICATES_VERSION=20230311
 ARG GNUPG_VERSION=2.2.40-1.1
 # https://deb.nodesource.com/
 # renovate: datasource=node-version depName=node packageName=node
-ARG NODE_VERSION=22.x
+ARG NODE_SETUP_VERSION=22.x
+# https://packages.debian.org/stable/nodejs
+# renovate: release=stable depName=nodejs
+ARG NODE_VERSION=22.13.1-1nodesource1
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
 ARG GO_VERSION=1.23.5
@@ -64,12 +67,10 @@ RUN mkdir -p /app && \
     mkdir -p /etc/apt/keyrings/
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl=${CURL_VERSION} git=${GIT_VERSION} make=${MAKE_VERSION} unzip=${UNZIP_VERSION}
+    apt-get install -y --no-install-recommends curl=${CURL_VERSION} git=${GIT_VERSION} make=${MAKE_VERSION} unzip=${UNZIP_VERSION} ca-certificates=${CA_CERTIFICATES_VERSION} gnupg=${GNUPG_VERSION}
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates=${CA_CERTIFICATES_VERSION} gnupg=${GNUPG_VERSION} && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" > /etc/apt/sources.list.d/nodesource.list
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_SETUP_VERSION} | bash - && \
+    apt-get install -y --no-install-recommends nodejs=${NODE_VERSION}
 
 RUN rm -rf /var/lib/apt/lists/*
 
