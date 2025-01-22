@@ -1,5 +1,5 @@
-# Use debian stable-slim as the base image
-FROM debian:stable-slim
+# Use debian stable as the base image
+FROM debian:stable
 
 # Avoid prompts from apt during build
 ARG DEBIAN_FRONTEND=noninteractive
