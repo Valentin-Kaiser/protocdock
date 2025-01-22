@@ -25,7 +25,7 @@ ARG CA_CERTIFICATES_VERSION=20230311
 ARG GNUPG_VERSION=2.2.40-*
 # https://deb.nodesource.com/
 # renovate: datasource=node-version depName=node packageName=node
-ARG NODE_VERSION=20.x
+ARG NODE_VERSION=22.x
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
 ARG GO_VERSION=1.23.5
