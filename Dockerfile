@@ -1,5 +1,5 @@
 # Use debian stable-slim as the base image
-FROM debian:stable-slim
+FROM debian:stable
 
 # Avoid prompts from apt during build
 ARG DEBIAN_FRONTEND=noninteractive
@@ -16,16 +16,16 @@ ARG GIT_VERSION=1:2.39.*
 ARG MAKE_VERSION=4.3-*
 # https://packages.debian.org/stable/upzip
 # renovate: release=stable depName=unzip
-ARG UNZIP_VERSION=6.0-28                    # https://packages.debian.org/bookworm/unzip
+ARG UNZIP_VERSION=6.0-28
 # https://packages.debian.org/stable/ca-certificates
 # renovate: release=stable depName=ca-certificates
-ARG CA_CERTIFICATES_VERSION=20230311        # https://packages.debian.org/bookworm/ca-certificates
+ARG CA_CERTIFICATES_VERSION=20230311
 # https://packages.debian.org/stable/gnupg
 # renovate: release=stable depName=gnupg
-ARG GNUPG_VERSION=2.2.40-*                # https://packages.debian.org/bookworm/gnupg
+ARG GNUPG_VERSION=2.2.40-*
 # https://deb.nodesource.com/
 # renovate: datasource=node-version depName=node packageName=node
-ARG NODE_MAJOR=20.x                         # https://deb.nodesource.com/
+ARG NODE_VERSION=20.x
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
 ARG GO_VERSION=1.23.5
@@ -47,7 +47,7 @@ ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4      # https://github.com/protocolbuffers
 # renovate: datasource=github-releases depName=grpc-web packageName=grpc/grpc-web
 ARG GRPC_WEB_VERSION=1.5.0
 # https://github.com/pseudomuto/protoc-gen-doc/releases
-# renovate: datasource=github-releases depName=grpc-web packageName=pseudomuto/protoc-gen-doc
+# renovate: datasource=github-releases depName=protoc-gen-doc packageName=pseudomuto/protoc-gen-doc
 ARG PROTOC_GEN_DOC_VERSION=1.5.1
 
 # Set environment variables for Golang, Protoc, Plugins and the PATH
