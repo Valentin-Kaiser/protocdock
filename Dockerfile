@@ -39,7 +39,7 @@ ARG GO_VERSION=1.23.5
 ARG PROTOC_VERSION=29.3
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
-ARG PROTOC_GEN_GO_VERSION=1.36.3
+ARG PROTOC_GEN_GO_VERSION=1.36.4
 # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
 # renovate: datasource=go depName=protoc-gen-go-grpc packageName=google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
