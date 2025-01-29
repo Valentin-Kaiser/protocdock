@@ -1,4 +1,4 @@
-# Use debian stable-slim as the base image
+# Use debian stable as the base image
 FROM debian:stable
 
 # Avoid prompts from apt during build
@@ -35,7 +35,7 @@ ARG GO_VERSION=1.23.5
 
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
-# renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf/releases
+# renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf
 ARG PROTOC_VERSION=29.3
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
