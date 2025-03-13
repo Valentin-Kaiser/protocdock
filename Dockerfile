@@ -36,7 +36,7 @@ ARG GO_VERSION=1.23.5
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
 # renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf
-ARG PROTOC_VERSION=29.3
+ARG PROTOC_VERSION=30.0
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
 ARG PROTOC_GEN_GO_VERSION=1.36.4
