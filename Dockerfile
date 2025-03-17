@@ -80,9 +80,9 @@ RUN curl -O https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     rm go${GO_VERSION}.linux-amd64.tar.gz
 
 # Install Protocol Buffers Compiler
-RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protoc-${PROTOC_VERSION}-linux-x86_64.zip && \
-    unzip protoc-${PROTOC_VERSION}-linux-x86_64.zip -d $INSTALL_DIR && \
-    rm protoc-${PROTOC_VERSION}-linux-x86_64.zip
+RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION#v}/protoc-${PROTOC_VERSION#v}-linux-x86_64.zip && \
+    unzip protoc-${PROTOC_VERSION#v}-linux-x86_64.zip -d $INSTALL_DIR && \
+    rm protoc-${PROTOC_VERSION#v}-linux-x86_64.zip
 
 # Install ProtoC-Gen-Go plugins
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v${PROTOC_GEN_GO_VERSION} && \
