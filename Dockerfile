@@ -10,19 +10,19 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG CURL_VERSION=8.14.1-2
 # https://packages.debian.org/stable/git
 # renovate: release=stable depName=git
-ARG GIT_VERSION=1:2.39.5-0+deb12u2
+ARG GIT_VERSION=1:2.47.2-0.2
 # https://packages.debian.org/stable/make
 # renovate: release=stable depName=make
-ARG MAKE_VERSION=4.3-4.1
+ARG MAKE_VERSION=4.4.1-2
 # https://packages.debian.org/stable/upzip
 # renovate: release=stable depName=unzip
-ARG UNZIP_VERSION=6.0-28
+ARG UNZIP_VERSION=6.0-29
 # https://packages.debian.org/stable/ca-certificates
 # renovate: release=stable depName=ca-certificates
 ARG CA_CERTIFICATES_VERSION=20250419
 # https://packages.debian.org/stable/gnupg
 # renovate: release=stable depName=gnupg
-ARG GNUPG_VERSION=2.2.40-1.1
+ARG GNUPG_VERSION=2.4.7-21
 # https://deb.nodesource.com/
 # renovate: datasource=node-version depName=node packageName=node
 ARG NODE_SETUP_VERSION=22.x
@@ -31,7 +31,7 @@ ARG NODE_SETUP_VERSION=22.x
 ARG NODE_VERSION=22.13.1-1nodesource1
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
-ARG GO_VERSION=1.24.5
+ARG GO_VERSION=1.25.0
 
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
@@ -39,7 +39,7 @@ ARG GO_VERSION=1.24.5
 ARG PROTOC_VERSION=v32.0
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go?tab=versions
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
-ARG PROTOC_GEN_GO_VERSION=1.36.6
+ARG PROTOC_GEN_GO_VERSION=1.36.8
 # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc?tab=versions
 # renovate: datasource=go depName=protoc-gen-go-grpc packageName=google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
