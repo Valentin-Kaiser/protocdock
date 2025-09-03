@@ -31,7 +31,7 @@ ARG NODE_SETUP_VERSION=22.x
 ARG NODE_VERSION=22.13.1-1nodesource1
 # https://github.com/golang/go/tags
 # renovate: datasource=golang-version depName=go packageName=go
-ARG GO_VERSION=1.25.0
+ARG GO_VERSION=1.25.1
 
 # Defined default version for Protoc and Plugins
 # https://github.com/protocolbuffers/protobuf
