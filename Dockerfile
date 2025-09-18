@@ -45,7 +45,7 @@ ARG PROTOC_GEN_GO_VERSION=1.36.8
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
 # https://github.com/protocolbuffers/protobuf-javascript/releases
 # renovate: datasource=github-releases depName=protobuf-javascript packageName=protocolbuffers/protobuf-javascript
-ARG PROTOBUF_JAVASCRIPT_VERSION=4.0.0      # https://github.com/protocolbuffers/protobuf-javascript/releases
+ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4      # https://github.com/protocolbuffers/protobuf-javascript/releases
 # https://github.com/grpc/grpc-web/releases
 # renovate: datasource=github-releases depName=grpc-web packageName=grpc/grpc-web
 ARG GRPC_WEB_VERSION=2.0.0
