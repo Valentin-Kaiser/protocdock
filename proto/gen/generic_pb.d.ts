@@ -13,6 +13,6 @@ export class Empty extends jspb.Message {
 
 export namespace Empty {
   export type AsObject = {
-  }
+  };
 }
 
