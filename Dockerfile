@@ -10,7 +10,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG CURL_VERSION=8.14.1-2
 # https://packages.debian.org/stable/git
 # renovate: release=stable depName=git
-ARG GIT_VERSION=1:2.47.2-0.2
+ARG GIT_VERSION=1:2.47.3-0+deb13u1
 # https://packages.debian.org/stable/make
 # renovate: release=stable depName=make
 ARG MAKE_VERSION=4.4.1-2
