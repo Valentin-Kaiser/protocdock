@@ -45,10 +45,13 @@ ARG PROTOC_GEN_GO_VERSION=1.36.8
 ARG PROTOC_GEN_GO_GRPC_VERSION=1.5.1
 # https://github.com/protocolbuffers/protobuf-javascript/releases
 # renovate: datasource=github-releases depName=protobuf-javascript packageName=protocolbuffers/protobuf-javascript
-ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4      # https://github.com/protocolbuffers/protobuf-javascript/releases
+ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4
 # https://github.com/grpc/grpc-web/releases
 # renovate: datasource=github-releases depName=grpc-web packageName=grpc/grpc-web
 ARG GRPC_WEB_VERSION=2.0.0
+# https://www.npmjs.com/package/ts-proto
+# renovate: datasource=npm depName=ts-proto packageName=ts-proto
+ARG TS_PROTO_VERSION=2.4.0
 # https://github.com/pseudomuto/protoc-gen-doc/releases
 # renovate: datasource=github-releases depName=protoc-gen-doc packageName=pseudomuto/protoc-gen-doc
 ARG PROTOC_GEN_DOC_VERSION=1.5.1
@@ -97,6 +100,9 @@ RUN curl -LO https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSI
 RUN curl -LO https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${PROTOBUF_JAVASCRIPT_VERSION}/protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz && \
     tar -xzf protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz -C $INSTALL_DIR && \
     rm protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.tar.gz
+
+# Install ts-proto globally
+RUN npm install -g ts-proto@${TS_PROTO_VERSION}
 
 # Install Protoc-Gen-Doc
 RUN curl -LO https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${PROTOC_GEN_DOC_VERSION}/protoc-gen-doc_${PROTOC_GEN_DOC_VERSION}_linux_amd64.tar.gz && \

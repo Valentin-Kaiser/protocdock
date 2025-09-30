@@ -75,6 +75,7 @@ The available version arguments are:
 | `PROTOC_GEN_GO_VERSION` | `1.31.0` |
 | `PROTOC_GEN_GO_GRPC_VERSION` | `1.3.0` |
 | `PROTOBUF_JAVASCRIPT_VERSION` | `3.21.2` |
+| `TS_PROTO_VERSION` | `2.4.0` |
 | `GRPC_WEB_VERSION` | `1.5.0` |
 | `PROTOC_GEN_DOC_VERSION` | `1.5.1` |
 | --- | --- |
